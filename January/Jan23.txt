@@ -1,0 +1,31 @@
+Input
+- Vector, Scalar, Number, etc.
+- Noted with "x" or "X" (use "W")
+
+Output
+- Noted with "ŷ" or "Ŷ" (use "Ŷ")
+
+Target
+- Noted with "y" or "Y" (use "Y")
+
+Between Input and Output
+- Weights ("w" or "W") (use "w")
+- Bias ("b")
+
+f(x) = 2x+5
+- Think as a neural network:
+    - Weight: 2
+    - Input: X
+    - Bias: 5
+    - Target: f(x)
+- To find how close the numbers are, use mean squared error (MSE)
+    - (Ŷ - Y)^2
+    - Also known as the loss
+    - Ŷ - Y is called the residual (r)
+    - To find loss with residual: 
+        - Square the residual
+        - Add the components
+        - Divide by the number of components
+    - loss = SSE / n
+        - SSE (Sum Squared Error) = r^t * r
+            - transposed residual * residual
