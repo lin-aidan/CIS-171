@@ -1,5 +1,5 @@
 import torch
-'''
+
 X = torch.tensor([3.0])
 
 Y = torch.tensor([10.0])
@@ -7,18 +7,6 @@ Y = torch.tensor([10.0])
 w = torch.tensor([6.0], requires_grad=True)
 
 b = torch.tensor([1.0], requires_grad=True)
-'''
-X = torch.tensor([
-    [1], 
-    [5], 
-    [8]
-]).float()
-
-Y = torch.tensor([3, 6, 1]).float()
-
-w = torch.tensor([0.0], requires_grad=True)
-
-b = torch.tensor([0.0], requires_grad=True)
 
 Yhat = X@w + b
 r = Yhat - Y
