@@ -11,18 +11,18 @@ data['Diagnosis'] = data['Diagnosis'].map({'Malignant': 1, 'Benign': 0})
 features = torch.tensor(data.drop('Diagnosis', axis=1).to_numpy()).float()
 target = torch.tensor(data['Diagnosis'].to_numpy()).float().reshape(-1, 1)
 
-# Standardizing targets and features
+# Standardizing features
 fm = features.mean(axis = 0, keepdim = True)
 fs = features.std(axis = 0, keepdim = True)
-tm = target.mean(axis = 0, keepdim = True)
-ts = target.std(axis = 0, keepdim = True)
+
+# Not standardizing target since loss needs to know the actual values of 0 and 1 for binary classification
 
 X = (features - fm)/fs
-Y = (target - tm)/ts
+Y = target
 
 model = nn.Linear(1, 1)
 criterion = nn.BCEWithLogitsLoss()
-optimizer = optim.SGD(model.parameters(), lr=0.01)
+optimizer = optim.SGD(model.parameters(), lr=0.1)
 
 epochs = 250
 
@@ -32,4 +32,10 @@ for epoch in range(epochs):
     loss.backward()
     optimizer.step()
     optimizer.zero_grad()
-print(loss)
+
+
+torch.save({
+    'fm': fm,
+    'fs': fs,
+    'parameters': model.state_dict()
+}, "Feb23-tumor.pth")
