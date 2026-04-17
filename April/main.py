@@ -17,4 +17,16 @@ print(vocab_dict)
 def get_vocab():
     return vocab_dict
 
+
+@app.get('/encode')
+def encode(text: str = ""):
+    normalized = text.lower()
+    encoding_list = []
+    for i in normalized:
+        if i in vocab_dict:
+            encoding_list.append(vocab_dict[i])
+        else:
+            encoding_list.append(0)
+    return {"text": normalized, "encoding": encoding_list}
+
 app.mount('/', StaticFiles(directory='static', html=True), name='static')
