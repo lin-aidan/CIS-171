@@ -1,1 +1,34 @@
-<!-- front-end cleared -->
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Vocab Lookup & Embedding Viewer</title>
+	<link rel="stylesheet" href="style.css" />
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	<main>
+		<h1>Vocab Lookup</h1>
+		<div class="controls">
+			<label for="charSelect">Select character:</label>
+			<select id="charSelect"></select>
+		</div>
+
+		<section id="lookup">
+			<h2>Lookup</h2>
+			<table id="lookupTable">
+				<thead><tr><th>Char</th><th>Index</th><th>Embedding</th></tr></thead>
+				<tbody></tbody>
+			</table>
+		</section>
+
+		<section id="plot">
+			<h2>Embedding Plot</h2>
+			<canvas id="embedChart" width="400" height="150"></canvas>
+		</section>
+	</main>
+
+	<script src="script.js"></script>
+</body>
+</html>

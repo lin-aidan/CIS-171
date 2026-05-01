@@ -19,12 +19,27 @@ def normalize_text(text):
     new_text = re.sub(r'\s+', ' ', new_text)
     return new_text
 
+embedding = nn.Embedding(len(vocab), 5)
 vocab_lookup = {}
-for i in range(27):
-    dictionary = {}
-    vocab_lookup[vocab[i]] = dictionary
+for i, char in enumerate(vocab):
+    dictionary = {
+        "char": char,
+        "index": i,
+        "embedding": embedding(torch.tensor([i])).tolist()
+    }
+    vocab_lookup[char] = dictionary
 print(vocab_lookup)
 
+
+
+@app.get('/api/vocab')
+def get_vocab_lookup():
+    return vocab_lookup
+
+
+@app.get('/myballs')
+def my_balls():
+    return ['lick', 'my', 'balls']
 
 
 app.mount('/', StaticFiles(directory='static', html=True), name='static')
